@@ -17,7 +17,7 @@ const Product = ({src,title,price}) => {
             </div>
         </div>
         <Flex className='justify-between p-4'>
-            <h4 className='font-dm text-secondary text-[#262626]'>{title}</h4>
+            <h4 className='font-dm font-bold text-secondary text-[#262626]'>{title}</h4>
             <p className='text-secondary text-[#767676]'>${price}</p>
         </Flex>
         <h6 className='text-[16px] text-[#767676] font-dm p-4'>Black</h6>
