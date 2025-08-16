@@ -19,8 +19,6 @@ import Promotion from '../assets/promotion.png'
 const Home = () => {
   return (
     <>
-    <Navber />
-    <Sidebar />
     <Banner />
     <Offer />
     <Container>
