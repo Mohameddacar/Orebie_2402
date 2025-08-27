@@ -6,10 +6,36 @@ import load from '../assets/load.png'
 import two from '../assets/two.png'
 import Flex from '../components/Flex'
 import Container from '../components/Container'
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 const Banner = () => {
+     var settings = {
+    infinite: true,
+    speed: 500,
+    arrows: false,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
   return (
     <section className='border-b bg-[##F0F0F0]'>
-    <section className='bg-[#F5F5F3]'><Image className='block mx-auto'  src={BannerImg} /></section>
+    {/* <Image className='block mx-auto'  src={BannerImg} /> */}
+    <div className='mx-w-[1800px]'>
+      <Slider {...settings}>
+      <div>
+        <Image className='block mx-auto'  src={BannerImg} />
+      </div>
+      <div>
+        <Image className='block mx-auto'  src={BannerImg} />
+      </div>
+      <div>
+        <Image className='block mx-auto'  src={BannerImg} />
+      </div>
+    </Slider>
+    </div>
     <Container>
         <Flex className='justify-between'>
 

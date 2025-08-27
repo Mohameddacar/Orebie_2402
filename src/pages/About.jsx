@@ -2,16 +2,23 @@ import React from 'react'
 import Container from '../components/Container'
 import Flex from '../components/Flex'
 import Image from '../components/Image'
+import Heading from '../components/Heading'
 import aboutOne from '../assets/about1.png'
 import aboutTwo from '../assets/about2.png'
 import AboutBlog from '../components/AboutBlog'
+import { useDispatch, useSelector } from 'react-redux'
+import { increment } from '../slices/counterSlice'
+import { Link } from 'react-router-dom'
 
 const About = () => {
+  let data = useSelector((state) => state.breadcrumb.prevalue)
+
   return (
-    <section>
+    <section className='py-[128px]'>
         <Container>
 
-      <h1 className='pt-[124px] font-dm font-bold text-black text-2xl'>About</h1>
+       <Heading className='!text-[49px] font-bold font-dm' text="About" />
+       <p> <Link to={data == "Home"?"/":`/${data}`}></Link> {data} > about </p>
       <Flex className='flex-wrap pt-[135px] pb-[128px] justify-between'>
         <div className=' w-[48%] relative'>
           <Image src={aboutOne} />
