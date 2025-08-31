@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Container from '../components/Container'
 import Flex from '../components/Flex'
 import Image from '../components/Image'
@@ -19,8 +19,20 @@ import "slick-carousel/slick/slick.css";
 import Slider from "react-slick";
 import NextArrow from '../components/NextArrow'
 import PrevArrow from '../components/PrevArrow'
+import axios from 'axios'
 
 const Home = () => {
+const [allData,setAllData]= useState([])
+  useEffect(() => {
+   async function alldata(){
+    let data = await axios.get("https://dummyjson.com/products")
+    setAllData(data.data.products)
+
+    } 
+    alldata()
+
+  }, [])
+
   var settings = {
     arrows: true,
     infinite: true,
@@ -40,44 +52,46 @@ const Home = () => {
     <Container>
       <Heading className='pb-10 pt-12' text='New Arrivals' />
       <Slider {...settings}>
-      <div>
-        <Product src={ProductOne} title="Basic Crew Neck Tee" price='44.00'/>
-      </div>
-      <div>
-        <Product src={ProductTwo} title="Basic Crew Neck Tee" price='44.00'/>
-      </div>
-      <div>
-        <Product src={ProductThree} title="Basic Crew Neck Tee" price='44.00'/>
-      </div>
-      <div>
-         <Product src={ProductFour} title="Basic Crew Neck Tee" price='44.00'/>
-      </div>
-      <div></div>
+      {
+        allData.map((item)=>
+        <div>
+        <Product src={item.thumbnail} title={item.title} price={item.price}/>
+      </div>)
+      }
+     
     </Slider>
       <Flex className='justify-between pb-[118px] pt-12 gap-x-10'>
-        <Product src={ProductOne} title="Basic Crew Neck Tee" price='44.00'/>
-        <Product src={ProductTwo} title="Basic Crew Neck Tee" price='44.00'/>
-        <Product src={ProductThree} title="Basic Crew Neck Tee" price='44.00'/>
-        <Product src={ProductFour} title="Basic Crew Neck Tee" price='44.00'/>
-        <Product src={ProductFour} title="Basic Crew Neck Tee" price='44.00'/>
+         {
+        allData.map((item,index)=>
+        (index>4 && index <9) &&
+        <div>
+        <Product src={item.thumbnail} title={item.title} price={item.price}/>
+      </div>)
+      }
       </Flex>
 
       <Heading ClassName='pb-12 ' text='Our Bestsellers' />
       <Flex className='justify-between pb-[118px]'>
-        <Product src={ProductOne} title="Basic Crew Neck Tee" price='44.00'/>
-        <Product src={ProductTwo} title="Basic Crew Neck Tee" price='44.00'/>
-        <Product src={ProductThree} title="Basic Crew Neck Tee" price='44.00'/>
-        <Product src={ProductFour} title="Basic Crew Neck Tee" price='44.00'/>
+         {
+        allData.map((item,index)=>
+          (index>10 && index <14) &&
+        <div>
+        <Product src={item.thumbnail} title={item.title} price={item.price}/>
+      </div>)
+      }
       </Flex>
 
       <Image  className='mb-[128px]' src={Promotion}/>
 
       <Heading ClassName='pb-14' text='Special Offers' />
       <Flex className='justify-between pb-[118px]'>
-        <Product src={ProductOne} title="Basic Crew Neck Tee" price='44.00'/>
-        <Product src={ProductTwo} title="Basic Crew Neck Tee" price='44.00'/>
-        <Product src={ProductThree} title="Basic Crew Neck Tee" price='44.00'/>
-        <Product src={ProductFour} title="Basic Crew Neck Tee" price='44.00'/>
+        {
+        allData.map((item,index)=>
+          (index>13 && index <=17) &&
+        <div>
+        <Product src={item.thumbnail} title={item.title} price={item.price}/>
+      </div>)
+      }
       </Flex>
     </Container>
     
