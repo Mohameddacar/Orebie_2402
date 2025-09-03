@@ -1,11 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Container from '../components/Container'
 import Flex from '../components/Flex'
 import { FaBarsStaggered, FaCartPlus, FaUser } from "react-icons/fa6";
 import { IoSearch } from "react-icons/io5";
 import { IoMdArrowDropdown } from "react-icons/io";
+import { useSelector } from 'react-redux';
 
 const Sidebar = () => {
+  let data = useSelector((state)=> state)
+  console.log(data);
+  let [showcart , setShowcart]= useState(false)
+  let handleAddtocart=()=>{
+    setShowcart(!showcart)
+  }
   return (
     <section className='py-8 bg-[#F5F5F3]'>
         <Container>
@@ -26,8 +33,12 @@ const Sidebar = () => {
                   <Flex className='justify-end items-center'>
                     <FaUser />
                     <IoMdArrowDropdown className='ml-[10px] text-black ' />
-                    <FaCartPlus className='ml-10 text-black ' />
+                    <FaCartPlus onClick={handleAddtocart} className='ml-10 text-black ' />
+                    
                   </Flex>
+                  {
+                      showcart && <div className='w-1/3 h-screen bg-primary absolute top-0 right-0 z-10'></div>
+                    }
                 </div>
             </Flex>
         </Container>

@@ -3,7 +3,21 @@ import Image from './Image'
 import Flex from './Flex'
 import { FaCartPlus, FaHeart } from 'react-icons/fa6'
 import { IoGitCompareOutline } from 'react-icons/io5'
+import { cartitem } from '../slices/addtocart'
+import { useDispatch } from 'react-redux'
 const Product = ({src,title,price}) => {
+  let dispatch=useDispatch()
+  let handleAddToCart=()=>{
+    dispatch(cartitem({
+      title:title,
+      price:price,
+      image:src,
+      quantity:1
+      
+
+    }))
+    
+  }
   return (
     <div className='relative w-[370px] rounded-lg shadow-md group'>
         <div className="w-full h-[370px] relative overflow-hidden rounded-lg">
@@ -12,7 +26,7 @@ const Product = ({src,title,price}) => {
                 <ul className='flex flex-col items-end gap-y-4  px-[30px] py-6'>
                     <li className='text-[#767676] font-dm font-normal '>Add to Wish List <FaHeart className='text-sm inline ml-4'/></li>
                     <li className='text-[#767676] font-dm font-normal '>Compare <IoGitCompareOutline className='text-sm inline ml-4'/></li>
-                    <li className='text-[#767676] font-dm font-normal '>Add to Cart <FaCartPlus className='text-sm inline ml-4'/></li>
+                    <li onClick={handleAddToCart} className='text-[#767676] font-dm font-normal '>Add to Cart <FaCartPlus className='text-sm inline ml-4'/></li>
                 </ul>
             </div>
         </div>
